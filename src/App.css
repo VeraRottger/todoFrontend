@@ -1,38 +1,196 @@
-.App {
-  text-align: center;
+/* General reset */
+:root {
+  --primary-color: #6b5edb;
+  --background-color-overall: #a0bceb;
+  --background-color-light-mode: #ffffff;
+  --background-color-dark-mode: #272727;
+  --text-color-light-mode: #000000;
+  --text-color-dark-mode: #ffffff;
+  --text-color-purple-button: #ffffff;
+  --completed-text-color: rgb(165, 165, 165);
+  --border-color: rgb(165, 165, 165);
+  --background-color-input-dark-mode: #646464;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+html, body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
 }
 
-.App-header {
-  background-color: #282c34;
+/* App styles */
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center;
+  background-color: var(--background-color-overall);
   min-height: 100vh;
+}
+
+.app--dark {
+  color: var(--text-color-dark-mode);
+}
+
+.app--dark .todo-list {
+  background-color: var(--background-color-dark-mode);
+}
+
+/* Todo List styles */
+.todo-list {
+  background-color: var(--background-color-light-mode);
+  width: 50vw;
+  max-width: 800px;
+  min-height: 50vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 25px;
+}
+
+.todo-list__title {
+  font-size: 24px;
+  text-transform: uppercase;
+}
+
+.todo-list__topbar {
+  display: flex;
+  column-gap: 10px; 
+  width: 100%; 
+  max-width: 800px;
+  padding: 10px; 
+  margin: 0 auto;
+}
+
+.todo-list__input {
+  padding: 0 8px;
+  border: 2px solid var(--primary-color);
+  border-radius: 4px;
+  flex-grow: 1;
+  outline: none;
+}
+
+.todo-list__input:focus {
+  border-color: var(--primary-color);
+}
+
+.todo-list__add-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  background-color: var(--primary-color);
+  color: var(--text-color-purple-button);
+  text-transform: uppercase;
+  border-radius: 4px;
+  font-size: 12px;
+  padding: 6px 16px;
+}
+
+/* Dark Mode Toggle */
+.dark-mode-toggle {
+  aspect-ratio: 1/1;
+  width: 35px;
+  padding: 6px;
+  display: flex;
+  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 4px;
 }
 
-.App-link {
-  color: #61dafb;
+.dark-mode-toggle__icon {
+  color: var(--text-color-purple-button);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Todo Items */
+.todo-list__items {
+  list-style-type: none;
+  display: flex;
+  width: 100%;
+  max-width: 800px;
+  flex-direction: column;
+  padding: 25px;
+}
+
+.todo-list__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--primary-color);
+}
+
+.todo-list__item-check {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.todo-list__checkbox {
+  cursor: pointer;
+  height: 20px;
+  width: 20px;
+  background-color: var(--background-color-light-mode);
+  border: 1px solid var(--primary-color);
+  border-radius: 2px;
+  appearance: none;
+}
+
+.todo-list__checkbox:checked {
+  background-color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+}
+
+.todo-list__checkbox:checked::before {
+  content: '✔';
+  color: var(--text-color-purple-button);
+  display: block;
+  text-align: center;
+  font-size: 12px;
+}
+
+.todo-list__item-text {
+  color: var(--text-color-light-mode);
+}
+
+.todo-list__item-text--completed {
+  text-decoration: line-through;
+  color: var(--completed-text-color);
+}
+
+.todo-list__delete-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--primary-color);
+}
+
+/* Dark Mode */
+.app--dark .todo-list__input {
+  background-color: var(--background-color-input-dark-mode);
+  color: var(--text-color-dark-mode);
+  border: none;
+}
+
+.app--dark .todo-list__item {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.app--dark .todo-list__item-text {
+  color: var(--text-color-dark-mode);
+}
+
+.app--dark .todo-list__item-text--completed {
+  color: var(--completed-text-color);
+}
+
+.app--dark .todo-list__delete-button {
+  color: var(--primary-color);
 }
